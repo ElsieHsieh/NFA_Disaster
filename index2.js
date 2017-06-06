@@ -1,14 +1,3 @@
-var invocation = new XMLHttpRequest();
-var url = 'https://satis.ncdr.nat.gov.tw/kml/getEMIC.ashx?Dday=7';
-   
-function callOtherDomain() {
-  if(invocation) {    
-    invocation.open('GET', url, true);
-    invocation.onreadystatechange = handler;
-    invocation.send(); 
-  }
-}
-
 
     $(function() {　
         $(window).load(function() {　　
