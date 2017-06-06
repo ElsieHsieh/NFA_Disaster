@@ -1,3 +1,12 @@
+    function jsonCallback(json){
+console.log(json);
+}
+$.ajax({
+url: "https://satis.ncdr.nat.gov.tw/kml/getEMIC.ashx?Dday=7",
+dataType: "jsonp"
+});
+
+
     $(function() {　
         $(window).load(function() {　　
             $(window).bind('scroll resize', function() {　　
