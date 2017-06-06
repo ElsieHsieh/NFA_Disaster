@@ -1,10 +1,13 @@
-    function jsonCallback(json){
-console.log(json);
+var invocation = new XMLHttpRequest();
+var url = 'https://satis.ncdr.nat.gov.tw/kml/getEMIC.ashx?Dday=7';
+   
+function callOtherDomain() {
+  if(invocation) {    
+    invocation.open('GET', url, true);
+    invocation.onreadystatechange = handler;
+    invocation.send(); 
+  }
 }
-$.ajax({
-url: "https://satis.ncdr.nat.gov.tw/kml/getEMIC.ashx?Dday=7",
-dataType: "jsonp"
-});
 
 
     $(function() {　
