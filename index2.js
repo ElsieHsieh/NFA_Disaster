@@ -224,8 +224,8 @@
 
 
             var colorScale = d3.scale.ordinal()
-                .domain(["土石災情", "其他災情", "積淹水災情", "路樹災情", "廣告招牌災情", "道路、隧道災情", "橋梁災情", "鐵路、高鐵及捷運災情", "建物毀損", "水利設施災害", "車輛及交通事故", "環境污染", "火災", "民生、基礎設施災情"])
-                .range(["#cbbeb5", "#ffbe4f", "#fe5757", "#4b86b4", "#0ea7b5", "#9e9e9e", "#85bdde", "#63ace5", "#6bd2db", "#fe8181", "#32ab9f", "#3b5998", "#e8702a", "#0c457d"]);
+                .domain(["土石災情", "其他災情", "積淹水災情", "路樹災情", "道路、隧道災情", "橋梁災情", "鐵路、高鐵及捷運災情", "水利設施災害", "民生、基礎設施災情"])
+                .range(["#cbbeb5", "#ffbe4f", "#fe5757", "#4b86b4", "#0ea7b5", "#9e9e9e", "#85bdde", "#63ace5", "#6bd2db"]);
 
             var countycolor = d3.scale.ordinal().range(["#08589e", "#2b8cbe", "#4eb3d3", "#7bccc4", "#a8ddb5", "#ccebc5"]);
 
@@ -323,16 +323,16 @@
                 .stack(debrisGroup, "土石災情")
                 .stack(floodGroup, "積淹水災情")
                 .stack(treeGroup, "路樹災情")
-                .stack(adGroup, "廣告招牌災情")
+                //.stack(adGroup, "廣告招牌災情")
                 .stack(roadGroup, "道路、隧道災情")
                 .stack(bridgeGroup, "橋梁災情")
                 .stack(train_hsr_mrtGroup, "鐵路、高鐵及捷運災情")
-                .stack(buildingGroup, "建物毀損")
+                //.stack(buildingGroup, "建物毀損")
                 .stack(hydraulicGroup, "水利設施災害")
                 .stack(infrastructureGroup, "民生、基礎設施災情")
-                .stack(caracciGroup, "車輛及交通事故")
-                .stack(environmentGroup, "環境污染")
-                .stack(fireGroup, "火災")
+                //.stack(caracciGroup, "車輛及交通事故")
+                //.stack(environmentGroup, "環境污染")
+                //.stack(fireGroup, "火災")
                 .colors(function(DisasterMainType) {
                     return colorScale(DisasterMainType);
                 })
