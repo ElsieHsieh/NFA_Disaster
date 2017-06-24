@@ -246,17 +246,16 @@
             var pie = dc.pieChart("#dis_pie")
                 .dimension(disastertype)
                 .group(disastertypesGroup) //更改
-                .colors(function(newDisType) {
-                    return colorScale(newDisType);
-                })
+                // .colors(function(newDisType) {
+                //     return colorScale(newDisType);
+                // })
                 .width(200)
                 .height(200)
                 .renderLabel(true)
                 .renderTitle(true)
                 .cap(7)
                 .ordering(function(d) {
-                    return -d.value;
-; //更改
+                    return disastertypesGroup; //更改
                 });
 
             //county row chart
