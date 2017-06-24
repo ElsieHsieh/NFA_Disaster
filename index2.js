@@ -155,7 +155,7 @@
             }); //更改
             var countyDisastersGroup = countyDim.group().reduceCount(function(d) {
                 //return d.landslide1 + d.rock1 + d.subgrade1 + d.block1 + d.Lateral1;
-                return d["disastertypes"];
+                return d["distype"];
             });
             var townIdDim = ndx.dimension(function(d) {
                 return d["distype"];
