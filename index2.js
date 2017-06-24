@@ -170,10 +170,10 @@
             var minTime = timedim.bottom(1)[0].parseTime;
             var maxTime = timedim.top(1)[0].parseTime;
 
-            var disastertypes = ndx.dimension(function(d) {
+            var disastertype = ndx.dimension(function(d) {
                 return d["disastertypes"];
             });
-            var disastertypesGroup = disastertypes.group().reduceCount();
+            var disastertypesGroup = disastertype.group().reduceCount();
             var debrisGroup = hourdim.group().reduceSum(function(d) {
                 return d.debris1;
             });
@@ -244,10 +244,10 @@
 
             //disaster type pie chart
             var pie = dc.pieChart("#dis_pie")
-                .dimension(disastertypes)
+                .dimension(disastertype)
                 .group(disastertypesGroup) //更改
-                .colors(function(DisasterMainType) {
-                    return colorScale(DisasterMainType);
+                .colors(function(disastertype) {
+                    return colorScale(disastertype);
                 })
                 .width(200)
                 .height(200)
