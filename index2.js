@@ -158,7 +158,7 @@
                 return d["disastertypes"];
             });
             var townIdDim = ndx.dimension(function(d) {
-                return d["TOWN_ID"];
+                return d["distype"];
             }); //更改
 
             var timedim = ndx.dimension(function(d) {
@@ -171,7 +171,7 @@
             var maxTime = timedim.top(1)[0].parseTime;
 
             var disastertype = ndx.dimension(function(d) {
-                return d["disastertypes"];
+                return d["distype"];
             });
             var disastertypesGroup = disastertype.group().reduceCount();
             var debrisGroup = hourdim.group().reduceSum(function(d) {
@@ -255,7 +255,8 @@
                 .renderTitle(true)
                 .cap(7)
                 .ordering(function(d) {
-                    return disastertypesGroup; //更改
+                    return disastertypesGroup
+; //更改
                 });
 
             //county row chart
