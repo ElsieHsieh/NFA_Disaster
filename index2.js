@@ -155,7 +155,7 @@
             }); //更改
             var countyDisastersGroup = countyDim.group().reduceCount(function(d) {
                 //return d.landslide1 + d.rock1 + d.subgrade1 + d.block1 + d.Lateral1;
-                return d["DisasterMainType"];
+                return d["disastertypes"];
             });
             var townIdDim = ndx.dimension(function(d) {
                 return d["TOWN_ID"];
@@ -171,7 +171,7 @@
             var maxTime = timedim.top(1)[0].parseTime;
 
             var disastertypes = ndx.dimension(function(d) {
-                return d["DisasterMainType"];
+                return d["disastertypes"];
             });
             var disastertypesGroup = disastertypes.group().reduceCount();
             var debrisGroup = hourdim.group().reduceSum(function(d) {
@@ -269,7 +269,7 @@
                     bottom: 20
                 })
                 .dimension(countyDim)
-                .group(townDisastersGroup, "Disasters")
+                .group(countyDisastersGroup, "Disasters")
                 .labelOffsetX(-45)
                 .colors(function(countyDim) {
                     return countycolor(countyDim);
