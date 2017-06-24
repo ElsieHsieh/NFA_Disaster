@@ -1,4 +1,3 @@
-
     $(function() {　
         $(window).load(function() {　　
             $(window).bind('scroll resize', function() {　　
@@ -39,11 +38,11 @@
     });
 
     function draw() {
-        //https://satis.ncdr.nat.gov.tw/kml/getEMIC.ashx?Dday=7
-        var csv = d3.dsv(",", "text/csv;charset=big5");
-        d3.csv("data.csv", function(data) {
 
-            var timeAllparse = d3.time.format("%Y-%m-%e %H:%M").parse,
+        var csv = d3.dsv(",", "text/csv;charset=big5");
+        d3.csv("nfa_data.csv", function(data) {
+
+            var timeAllparse = d3.time.format("%Y-%m-%dT%H:%M:%S").parse,
                 dateformat = d3.time.format("%Y/%m/%d"),
                 timeformat = d3.time.format("%H:%M");
 

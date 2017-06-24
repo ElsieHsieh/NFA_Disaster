@@ -50,7 +50,7 @@ dc_leaflet.leafletBase = function(_chart) {
     };
 
     var _tiles=function(map) {
-        L.tileLayer('http://maps.nlsc.gov.tw/S_Maps/wmts/EMAP8/default/GoogleMapsCompatible/{z}/{y}/{x}', {
+        L.tileLayer('http://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}', {
             attribution: '&copy; <a href="www.nlsc.gov.tw">國土測繪中心</a> contributors'
         }).addTo(map);
     };
