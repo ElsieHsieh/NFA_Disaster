@@ -268,7 +268,7 @@
                     right: 0,
                     bottom: 20
                 })
-                .dimension(townDim)
+                .dimension(countyDim)
                 .group(townDisastersGroup, "Disasters")
                 .labelOffsetX(-45)
                 .colors(function(countyDim) {
