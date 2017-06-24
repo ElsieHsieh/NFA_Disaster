@@ -131,7 +131,7 @@
                 d.bridge1 = bridge;
                 d.train_hsr_mrt1 = train_hsr_mrt;
                 d.infrastructure1 = infrastructure;
-
+                d.newDisType = d.debris1+d.flood1+d.tree1+d.other1+d.hydraulic1+d.road1+d.bridge1+d.train_hsr_mrt1+d.infrastructure1;
 
             });
 
@@ -171,7 +171,7 @@
             var maxTime = timedim.top(1)[0].parseTime;
 
             var disastertype = ndx.dimension(function(d) {
-                return d.distype;
+                return d["newDisType"];
             });
             var disastertypesGroup = disastertype.group().reduceCount();
             var debrisGroup = hourdim.group().reduceSum(function(d) {
@@ -246,8 +246,8 @@
             var pie = dc.pieChart("#dis_pie")
                 .dimension(disastertype)
                 .group(disastertypesGroup) //更改
-                .colors(function(distype) {
-                    return colorScale(distype);
+                .colors(function(newDisType) {
+                    return colorScale(newDisType);
                 })
                 .width(200)
                 .height(200)
