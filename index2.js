@@ -52,6 +52,7 @@
                 d.date = dateformat(d.parseTime);
                 d.tt = timeformat(d.parseTime);
                 d.geo1 = d.WGS84_lat + "," + d.WGS84_lon;
+                d.copyDisasterType = d.DisasterMainType;
                 if (d.DisasterMainType == "廣告招牌災情" || d.DisasterMainType == "建物毀損" || d.DisasterMainType == "車輛及交通事故" || d.DisasterMainType == "環境污染" || d.DisasterMainType == "火災") {
                     d.DisasterMainType = "其他災情";
                 }
@@ -419,7 +420,7 @@
                     }, {
                         targets: 4,
                         data: function(d) {
-                            return d.DisasterMainType;
+                            return d.copyDisasterType;
                         },
                     }, {
                         targets: 5,
