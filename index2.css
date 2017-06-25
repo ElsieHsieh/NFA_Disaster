@@ -7,6 +7,8 @@ body {
 }
 .container{
   width:1200px;
+  margin: 0;
+  padding: 0;
 }
 
 #top-bar {
@@ -117,7 +119,7 @@ a.reset:active {
 
 div.data_count {
   color: #08c;
-  margin-top: 20px;
+  m/* argin-top: 20px; */
   margin-left: 12px;
 }
 
@@ -131,12 +133,12 @@ div.data_count {
 }
 
 #dis_pie {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .map,
 #map {
-  margin-top: 20px;
+ /*  margin-top: 20px; */
 }
 
 table{
