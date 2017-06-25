@@ -242,14 +242,14 @@
                 .range(["#cbbeb5", "#4b86b4", "#fe5757", "#ffbe4f", "#0ea7b5", "#85bdde", "#9e9e9e", "#63ace5", "#6bd2db"]);
 
             // var countycolor = d3.scale.ordinal().range(["#08589e", "#2b8cbe", "#4eb3d3", "#7bccc4", "#a8ddb5", "#ccebc5"]);
-            var countycolor = d3.scale.ordinal().range(["#7bccc4"]);
+            var countycolor = d3.scale.ordinal().range(["#4eb3d3"]);
 
             //cluster map - leaflet
             var MKmarker = dc_leaflet.markerChart("#map")
                 .dimension(geo1Dim)
                 .group(markerGroup)
                 .width(380)
-                .height(380)
+                .height(420)
                 .center([23.5, 121])
                 .zoom(7)
                 .cluster(true)
