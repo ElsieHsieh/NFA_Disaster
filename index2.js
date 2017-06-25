@@ -228,7 +228,7 @@
 
             var colorScale = d3.scale.ordinal()
                 .domain(["土石災情", "其他災情", "積淹水災情", "路樹災情", "道路、隧道災情", "橋梁災情", "鐵路、高鐵及捷運災情", "水利設施災害", "民生、基礎設施災情"])
-                .range(["#cbbeb5", "#ffbe4f", "#fe5757", "#4b86b4", "#0ea7b5", "#9e9e9e", "#85bdde", "#63ace5", "#6bd2db"]);
+                .range(["#cbbeb5", "#ffbe4f", "#fe5757", "#4b86b4", "#0ea7b5", "#85bdde", "#9e9e9e", "#63ace5", "#6bd2db"]);
 
             var countycolor = d3.scale.ordinal().range(["#08589e", "#2b8cbe", "#4eb3d3", "#7bccc4", "#a8ddb5", "#ccebc5"]);
 
