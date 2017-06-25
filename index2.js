@@ -52,6 +52,11 @@
                 d.date = dateformat(d.parseTime);
                 d.tt = timeformat(d.parseTime);
                 d.geo1 = d.WGS84_lat + "," + d.WGS84_lon;
+                if(d.DisasterMainType == "廣告招牌災情"||d.DisasterMainType == "建物毀損"||
+                    d.DisasterMainType == "車輛及交通事故"||d.DisasterMainType == "環境污染"||
+                    d.DisasterMainType == "火災"||){
+                    d.DisasterMainType = "其他災情";
+                }
 
                 var distype = d["DisasterMainType"];
                 var debris = 0,
@@ -155,10 +160,10 @@
             }); //更改
             var countyDisastersGroup = countyDim.group().reduceCount(function(d) {
                 //return d.landslide1 + d.rock1 + d.subgrade1 + d.block1 + d.Lateral1;
-                return d["distype"];
+                return d["DisasterMainType"];
             });
             var townIdDim = ndx.dimension(function(d) {
-                return d["distype"];
+                return d["DisasterMainType"];
             }); //更改
 
             var timedim = ndx.dimension(function(d) {
@@ -171,7 +176,7 @@
             var maxTime = timedim.top(1)[0].parseTime;
 
             var disastertype = ndx.dimension(function(d) {
-                return d["newDisType"];
+                return d["DisasterMainType"];
             });
             var disastertypesGroup = disastertype.group().reduceCount();
             var debrisGroup = hourdim.group().reduceSum(function(d) {
