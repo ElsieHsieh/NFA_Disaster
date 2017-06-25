@@ -143,8 +143,25 @@
 
             var geo1Dim = ndx.dimension(function(d) {
                 return d["geo1"];
-            });  
-            var geo1Group = geo1Dim.group().reduceCount();  
+            });
+
+            var geo1Group = geo1Dim.group().reduceCount();
+
+            var markerGroup = geo1Dim.group().reduce(
+                function(p, v) { // add
+                    p.CaseDescription = v.CaseDescription;
+                    ++p.count;
+                    return p;
+                },
+                function(p, v) { // remove
+                    --p.count;
+                    return p;
+                },
+                function() { // init
+                    return { count: 0 };
+                }
+
+            );
 
             var countyDim = ndx.dimension(function(d) {
                 return d["CityName"];
@@ -154,13 +171,13 @@
             });
             var townDisastersGroup = townDim.group().reduceCount(function(d) {
                 return d["DisasterMainType"];
-            });  
+            });
             var countyDisastersGroup = countyDim.group().reduceCount(function(d) {
                 return d["DisasterMainType"];
             });
             var townIdDim = ndx.dimension(function(d) {
                 return d["DisasterMainType"];
-            });  
+            });
 
             var timedim = ndx.dimension(function(d) {
                 return d.parseTime;
@@ -230,7 +247,7 @@
             //cluster map - leaflet
             var MKmarker = dc_leaflet.markerChart("#map")
                 .dimension(geo1Dim)
-                .group(geo1Group)
+                .group(markerGroup)
                 .width(380)
                 .height(380)
                 .center([23.5, 121])
@@ -260,7 +277,7 @@
                 .renderTitle(true)
                 .cap(7)
                 .ordering(function(d) {
-                    return disastertypesGroup;  
+                    return disastertypesGroup;
                 });
 
             //county row chart
@@ -282,22 +299,24 @@
                 .elasticX(true)
                 .controlsUseVisibility(true)
                 .ordering(function(d) {
-                    return -d.value; })
+                    return -d.value;
+                })
                 .title(function(d) {
-                    return d.value; })
+                    return d.value;
+                })
                 .rowsCap(5);
 
             //filter and total count number
             var filterCount = dc.dataCount('.filter-count')
                 .dimension(ndx)
-                .group(ndxGroupAll)  
+                .group(ndxGroupAll)
                 .html({
                     some: '%filter-count'
                 });
 
             var totalCount = dc.dataCount('.total-count')
                 .dimension(ndx)
-                .group(ndxGroupAll)  
+                .group(ndxGroupAll)
                 .html({
                     some: '/%total-count'
                 });
