@@ -326,7 +326,7 @@
                 .width(770)
                 .height(250)
                 .transitionDuration(500)
-                .margins({ top: 7, right: 0, bottom: 47, left: 55 })
+                .margins({ top: 17, right: 0, bottom: 47, left: 55 })
                 .dimension(hourdim)
                 .group(otherGroup, "其他災情")
                 .stack(debrisGroup, "土石災情")
