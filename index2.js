@@ -249,9 +249,9 @@
             var pie = dc.pieChart("#dis_pie")
                 .dimension(disastertype)
                 .group(disastertypesGroup) //更改
-                // .colors(function(newDisType) {
-                //     return colorScale(newDisType);
-                // })
+                .colors(function(DisasterMainType) {
+                    return colorScale(DisasterMainType);
+                })
                 .width(200)
                 .height(200)
                 .renderLabel(true)
