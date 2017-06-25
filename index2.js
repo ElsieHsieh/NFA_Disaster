@@ -52,7 +52,7 @@
                 d.date = dateformat(d.parseTime);
                 d.tt = timeformat(d.parseTime);
                 d.geo1 = d.WGS84_lat + "," + d.WGS84_lon;
-                if(d.DisasterMainType == "廣告招牌災情"||d.DisasterMainType == "建物毀損"||d.DisasterMainType == "車輛及交通事故"||d.DisasterMainType == "環境污染"||d.DisasterMainType == "火災"){
+                if (d.DisasterMainType == "廣告招牌災情" || d.DisasterMainType == "建物毀損" || d.DisasterMainType == "車輛及交通事故" || d.DisasterMainType == "環境污染" || d.DisasterMainType == "火災") {
                     d.DisasterMainType = "其他災情";
                 }
 
@@ -134,18 +134,17 @@
                 d.bridge1 = bridge;
                 d.train_hsr_mrt1 = train_hsr_mrt;
                 d.infrastructure1 = infrastructure;
-                d.newDisType = d.debris1+d.flood1+d.tree1+d.other1+d.hydraulic1+d.road1+d.bridge1+d.train_hsr_mrt1+d.infrastructure1;
+                d.newDisType = d.debris1 + d.flood1 + d.tree1 + d.other1 + d.hydraulic1 + d.road1 + d.bridge1 + d.train_hsr_mrt1 + d.infrastructure1;
 
             });
 
-            //以下順序調動
             var ndx = crossfilter(data);
             var ndxGroupAll = ndx.groupAll();
 
             var geo1Dim = ndx.dimension(function(d) {
                 return d["geo1"];
-            }); //更改
-            var geo1Group = geo1Dim.group().reduceCount(); //更改
+            });  
+            var geo1Group = geo1Dim.group().reduceCount();  
 
             var countyDim = ndx.dimension(function(d) {
                 return d["CityName"];
@@ -155,14 +154,13 @@
             });
             var townDisastersGroup = townDim.group().reduceCount(function(d) {
                 return d["DisasterMainType"];
-            }); //更改
+            });  
             var countyDisastersGroup = countyDim.group().reduceCount(function(d) {
-                //return d.landslide1 + d.rock1 + d.subgrade1 + d.block1 + d.Lateral1;
                 return d["DisasterMainType"];
             });
             var townIdDim = ndx.dimension(function(d) {
                 return d["DisasterMainType"];
-            }); //更改
+            });  
 
             var timedim = ndx.dimension(function(d) {
                 return d.parseTime;
@@ -222,10 +220,6 @@
                 return d.infrastructure1;
             });
 
-            //var testfileter = disastertypes.dimension(function (d) {return d.tree1;    });
-            //var testfileterGroup = testfileter.groupAll();
-
-
             var colorScale = d3.scale.ordinal()
                 .domain(["土石災情", "其他災情", "積淹水災情", "路樹災情", "道路、隧道災情", "橋梁災情", "鐵路、高鐵及捷運災情", "水利設施災害", "民生、基礎設施災情"])
                 .range(["#cbbeb5", "#ffbe4f", "#fe5757", "#4b86b4", "#0ea7b5", "#85bdde", "#9e9e9e", "#63ace5", "#6bd2db"]);
@@ -235,20 +229,28 @@
 
             //cluster map - leaflet
             var MKmarker = dc_leaflet.markerChart("#map")
-                .dimension(geo1Dim) //更改
-                .group(geo1Group) //更改
+                .dimension(geo1Dim)
+                .group(geo1Group)
                 .width(380)
                 .height(380)
                 .center([23.5, 121])
                 .zoom(7)
                 .cluster(true)
-                .renderPopup(false)
+                .valueAccessor(function(kv) {
+                    return kv.value.count;
+                })
+                .locationAccessor(function(kv) {
+                    return kv.key;
+                })
+                .popup(function(kv) {
+                    return kv.value.CaseDescription;
+                })
                 .filterByArea(true);
 
             //disaster type pie chart
             var pie = dc.pieChart("#dis_pie")
                 .dimension(disastertype)
-                .group(disastertypesGroup) //更改
+                .group(disastertypesGroup)
                 .colors(function(DisasterMainType) {
                     return colorScale(DisasterMainType);
                 })
@@ -258,7 +260,7 @@
                 .renderTitle(true)
                 .cap(7)
                 .ordering(function(d) {
-                    return disastertypesGroup; //更改
+                    return disastertypesGroup;  
                 });
 
             //county row chart
@@ -279,41 +281,26 @@
                 })
                 .elasticX(true)
                 .controlsUseVisibility(true)
-                .ordering(function (d) { return -d.value; })
-      .title(function (d) { return d.value; })
+                .ordering(function(d) {
+                    return -d.value; })
+                .title(function(d) {
+                    return d.value; })
                 .rowsCap(5);
 
             //filter and total count number
             var filterCount = dc.dataCount('.filter-count')
                 .dimension(ndx)
-                .group(ndxGroupAll) //更改
+                .group(ndxGroupAll)  
                 .html({
                     some: '%filter-count'
                 });
 
             var totalCount = dc.dataCount('.total-count')
                 .dimension(ndx)
-                .group(ndxGroupAll) //更改
+                .group(ndxGroupAll)  
                 .html({
                     some: '/%total-count'
                 });
-
-            // time bar chart
-
-            // .group(otherGroup, "其他災情")
-            // .stack(debrisGroup, "土石災情")
-            // .stack(floodGroup, "積淹水災情")
-            // .stack(treeGroup, "路樹災情")
-            // .stack(adGroup, "廣告招牌災情")
-            // .stack(roadGroup, "道路、隧道災情")
-            // .stack(bridgeGroup, "橋梁災情")
-            // .stack(train_hsr_mrtGroup, "鐵路、高鐵及捷運災情")
-            // .stack(buildingGroup, "建物毀損")
-            // .stack(hydraulicGroup, "水利設施災害")
-            // .stack(infrastructureGroup, "民生、基礎設施災情")
-            // .stack(caracciGroup, "車輛及交通事故")
-            // .stack(environmentGroup, "環境污染")
-            // .stack(fireGroup, "火災")
 
 
             var timechart = dc.barChart("#dis_time")
@@ -354,7 +341,7 @@
             // data table
             // var dataTable = dc.dataTable('#dc-table-graph')
             //     .width(680)
-            //     .dimension(townIdDim) //更改
+            //     .dimension(townIdDim)  
             //     .group(function(d) {
             //         return d.date; })
             //     .size(Infinity)
