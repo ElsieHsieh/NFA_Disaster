@@ -2,9 +2,13 @@ html,
 body {
   background-color: rgba(255, 0, 0, 0.0) !important;
   font-family: "Microsoft JhengHei" !important;
-  width:1200px;
+  width:100% !important;
   margin:0 auto !important;
 }
+.container{
+  width:1200px;
+}
+
 #top-bar {
   width: 100%;
   height: 50px;
