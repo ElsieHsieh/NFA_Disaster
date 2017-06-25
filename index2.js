@@ -249,7 +249,7 @@
                 .dimension(geo1Dim)
                 .group(markerGroup)
                 .width(380)
-                .height(420)
+                .height(450)
                 .center([23.5, 121])
                 .zoom(7)
                 .cluster(true)

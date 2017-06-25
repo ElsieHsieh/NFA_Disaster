@@ -133,6 +133,7 @@ div.data_count {
 .map,
 #map {
   margin: auto;
+  padding-top: 20px;
 }
 
 table{
