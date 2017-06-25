@@ -54,7 +54,7 @@
                 d.geo1 = d.WGS84_lat + "," + d.WGS84_lon;
                 if(d.DisasterMainType == "廣告招牌災情"||d.DisasterMainType == "建物毀損"||
                     d.DisasterMainType == "車輛及交通事故"||d.DisasterMainType == "環境污染"||
-                    d.DisasterMainType == "火災"||){
+                    d.DisasterMainType == "火災"){
                     d.DisasterMainType = "其他災情";
                 }
 
