@@ -113,7 +113,7 @@ a.reset:active {
 
 div.data_count {
   color: #08c;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-left: 12px;
 }
 
@@ -132,8 +132,7 @@ div.data_count {
 
 .map,
 #map {
-  margin: auto;
-  padding-top: 20px;
+  margin-top: 20px;
 }
 
 table{
